@@ -1,0 +1,85 @@
+.container{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  
+  position: fixed;
+  
+  width: 100%;
+}
+.logo{
+  float: left;
+  display: block;
+  margin-top:15px;
+  
+}
+.side
+{
+  float: right;
+  
+  display: block;
+  padding: 14px 16px;
+  
+  color: white;
+}
+.side a
+{
+  text-decoration: none;
+  color:white;
+
+}
+.side a:hover
+{
+  text-decoration: underline;
+}
+.btn {
+  
+  font-size: 18px;
+}
+
+/* Style the active class, and buttons on mouse-over */
+.active {
+  background-color: #666;
+  color: white;
+}
+
+.img1
+{
+  width:10vw;
+  height:15vh;
+  padding: 10px 10px 10px 10px;
+}
+.img1:hover
+{
+  cursor:pointer;
+  width:12vw;
+  height:16vh;
+  padding: 4px 4px 4px 4px;
+}
+/*li {
+  float: left;
+  border-right:1px solid #bbb;
+}
+
+li:last-child {
+  border-right: none;
+}
+li a img{
+  
+  color: white;
+}
+li a  {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+*/
