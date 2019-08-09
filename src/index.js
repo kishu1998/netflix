@@ -128,7 +128,7 @@ class Main extends Component {
                         {this.renderVideo()}
                 <div id="scroll">
                 <Switch>
-                    <Route exact path='/'  component={()=><Default movies={this.state.movies} series={this.state.series} onClick={(i)=>this.setCurrent(i)}  />} ></Route>
+                    <Route exact path='/netflix/'  component={()=><Default movies={this.state.movies} series={this.state.series} onClick={(i)=>this.setCurrent(i)}  />} ></Route>
                     <Route  path='/films'  component={()=><Films movies={this.state.movies} onClick={(i)=>this.setCurrent(i)} />}></Route>
                     <Route  path='/series' component={()=><Series series={this.state.series} onClick={(i)=>this.setCurrent(i)}  />} ></Route>
                    
