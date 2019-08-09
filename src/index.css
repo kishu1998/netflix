@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: Anurati;
+  font-family: Anurati,thunderstrike3d;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -13,4 +13,8 @@ code {
 @font-face {
   font-family: Anurati;
   src: url('Anurati.otf') format('opentype');
+}
+@font-face {
+  font-family: thunderstrike3d;
+  src: url('thunderstrike3d.ttf') format('truetype');
 }

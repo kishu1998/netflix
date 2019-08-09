@@ -8,13 +8,14 @@ class Series extends Component
         if(!series)
         return <div>loading....</div>
         return series.map((item)=>{
-            return <img className="img1" key={item.id} onClick={()=>this.props.onClick(item.trailer_url)}  src={item.thumbnail}/>
+            return <img className="img1" key={item.trailer_url} onClick={()=>this.props.onClick(item)}  src={item.thumbnail}/>
         })
     }
     render()
     {
         if(this.props.series=='') return null;
         return (<div>
+                    
                     <div style={{fontSize:'40px',color:'white'}} >SERIES</div>
                     {this.renderImages()}
                     

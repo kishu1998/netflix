@@ -10,6 +10,7 @@ import {Switch,Route} from 'react-router-dom';
 import Films from './Films';
 import Series from './Series';
 import Default from './Default';
+
 class Main extends Component {
    constructor()
    { 
@@ -26,13 +27,13 @@ class Main extends Component {
     }
     componentDidMount()
     {
-        fetch('https://api.myjson.com/bins/13i70t').then(response => response.json()).then(resData =>
+        fetch('https://api.myjson.com/bins/zcb6t').then(response => response.json()).then(resData =>
          {
              
-             this.setState({movies:resData,f_movies: resData,current:resData[Math.floor(Math.random() * 10)].trailer_url});
+             this.setState({movies:resData,f_movies: resData,current:resData[Math.floor(Math.random() * 10)]});
             
         });
-        fetch('https://api.myjson.com/bins/s4td9').then(response => response.json()).then(resData =>
+        fetch(' https://api.myjson.com/bins/1f953p').then(response => response.json()).then(resData =>
          {
              
              this.setState({series:resData,f_series: resData});
@@ -48,19 +49,40 @@ class Main extends Component {
             return <img style={{width:'10vw',height:'15vh'}} src={item.thumbnail}/>
         })
     }
+    ratings()
+    { let a=[];
+    let i=0;
+    a.push(<h3 key='yj' style={{color:'white'}}>RATINGS </h3>)
+    for(i=0;i<this.state.current.rating;i++)
+       a.push(<span key={i} style={{color:'yellow'}}>☆</span>)
+    for(let j=i;j<10;j++)
+        a.push(<span key={j} style={{color:'white'}}>☆</span>)
+       return a;
+    }
 
     renderVideo = () => {
         
         let movie = this.state.movies;
         if(!movie)
             return <div>Loading....</div>
-        return (
-            <center ><iframe  src={this.state.current} style={{marginTop:'60px',width: '100%', height: '60vh'}} ></iframe></center>
+        return (<div id="video-player">
+                <center>
+                    <iframe  src={this.state.current.trailer_url} style={{marginTop:'8vh',width: '100%', height: '60vh'}} ></iframe>
+                </center>
+                <h1 style={{color:"white"}}>{this.state.current.title}</h1>
+                <div style={{width:'100%',height:"200px",color:'white',fontFamily:'thunderstrike3d'}}>
+                
+                {this.state.current.description}
+                <div> {this.ratings()}</div>
+
+                </div>
+            
+            </div>
         )
     }
     onChangeHandler(val)
     {
-        console.log(val)
+        
         let movies=this.state.f_movies;
         let series=this.state.f_series;
         let movies1=movies.filter((item)=>(item.title).toLowerCase().includes(val.toLowerCase()));
@@ -69,9 +91,23 @@ class Main extends Component {
         this.setState({movies:movies1,series:series1,search:val});
 
     }
+    currentlyViewed()
+    {
+
+    }
      setCurrent(i)
      {
          this.setState({current:i});
+          document.getElementById("video-player").scrollIntoView(); ;
+    
+         let b=[];
+        let a=localStorage.getItem('netflix');
+        if(a)
+        {console.log(a);
+            b.push(a);
+        }
+        localStorage.clear();
+        localStorage.setItem('netflix',i.thumbnail);
      }
 
     render() {
@@ -83,14 +119,15 @@ class Main extends Component {
                    
                      
                 </Navbar>
-                {this.renderVideo()}
+                        {this.renderVideo()}
                 <Switch>
                     <Route exact path='/'  component={()=><Default movies={this.state.movies} series={this.state.series} onClick={(i)=>this.setCurrent(i)}  />} ></Route>
                     <Route  path='/films'  component={()=><Films movies={this.state.movies} onClick={(i)=>this.setCurrent(i)} />}></Route>
                     <Route  path='/series' component={()=><Series series={this.state.series} onClick={(i)=>this.setCurrent(i)}  />} ></Route>
                    
                 </Switch>
-                
+                        {this.currentlyViewed()}
+                <div className="footer" >Media source: Google/YouTube. Not intended for commercial use. May subject to copyright.</div>
              </div> 
         )
     }
