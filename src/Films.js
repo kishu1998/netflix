@@ -18,7 +18,7 @@ export default class Films extends Component
     render()
     {
         if(this.props.movies=='') return null;
-        return (<div>
+        return (<div id="scroll">
                     
                      <div style={{fontSize:'40px',color:'white'}} >
                          FILMS

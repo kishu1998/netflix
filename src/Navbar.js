@@ -19,9 +19,9 @@ export default class Navbar extends Component {
                 
                     <li className="logo" ><Link to='/'><img src={logo} style={{width:'7vw',height:'4vh'}}></img></Link></li>
                     
-                    <li className="btn side" ><Link to='/films'>FI LMS</Link></li>
-                    <li className="btn side"><Link to='/series'>SERI ES</Link></li>
-                    <li className="btn active side"><Link to='/'>HOME</Link></li>
+                    <li className="btn side" onClick={()=>this.props.onClick('f')} ><Link to='/films'>FI LMS</Link></li>
+                    <li className="btn side" onClick={()=>this.props.onClick('m')} ><Link to='/series'>SERI ES</Link></li>
+                    <li className="btn active side" onClick={()=>this.props.onClick('m')} ><Link to='/'>HOME</Link></li>
                     <li className="side"><input  onInput={(e)=>this.props.onChange(e.target.value)} placeholder="search" ></input></li>
                 
             </div>

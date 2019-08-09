@@ -89,7 +89,13 @@ class Main extends Component {
         let series1=series.filter((item)=>(item.title).toLowerCase().includes(val.toLowerCase()));
 
         this.setState({movies:movies1,series:series1,search:val});
-
+        document.getElementById("scroll").scrollIntoView();
+    }
+    setCurrentByNav(type)
+    {
+        if(type=='f')
+        this.setCurrent(this.state.f_movies[Math.floor(Math.random() * 10)])
+       else this.setCurrent(this.state.f_series[Math.floor(Math.random() * 10)])
     }
     currentlyViewed()
     {
@@ -98,7 +104,7 @@ class Main extends Component {
      setCurrent(i)
      {
          this.setState({current:i});
-          document.getElementById("video-player").scrollIntoView(); ;
+          document.getElementById("video-player").scrollIntoView();
     
          let b=[];
         let a=localStorage.getItem('netflix');
@@ -115,17 +121,19 @@ class Main extends Component {
         return (
             <div>
                  
-                <Navbar onChange={(val)=>this.onChangeHandler(val)}> 
+                <Navbar onClick={(f_s)=>this.setCurrentByNav(f_s)} onChange={(val)=>this.onChangeHandler(val)}> 
                    
                      
                 </Navbar>
                         {this.renderVideo()}
+                <div id="scroll">
                 <Switch>
                     <Route exact path='/'  component={()=><Default movies={this.state.movies} series={this.state.series} onClick={(i)=>this.setCurrent(i)}  />} ></Route>
                     <Route  path='/films'  component={()=><Films movies={this.state.movies} onClick={(i)=>this.setCurrent(i)} />}></Route>
                     <Route  path='/series' component={()=><Series series={this.state.series} onClick={(i)=>this.setCurrent(i)}  />} ></Route>
                    
                 </Switch>
+                </div>
                         {this.currentlyViewed()}
                 <div className="footer" >Media source: Google/YouTube. Not intended for commercial use. May subject to copyright.</div>
              </div> 
